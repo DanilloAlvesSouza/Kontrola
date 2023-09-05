@@ -9,7 +9,7 @@ namespace KontrolaPoc.Models
         public string Modelo { get; set; }
         public string NumeroSerie { get; set; }
         public string Potencia { get; set; }
-
+        public string ImagemUrl { get; set; }
         public List<ItemChamado> itemChamados { get; set; }
 
         public int FilialId { get; set; }

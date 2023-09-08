@@ -1,4 +1,6 @@
 ﻿using KontrolaPoc.Context;
+using KontrolaPoc.Repositories;
+using KontrolaPoc.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +26,10 @@ namespace WebAppRPv5
             services.AddDbContext<AppDbContext>(options =>
               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
+
+            services.AddTransient<IChamadoRepository, ChamadoRepository>();
+            services.AddTransient<IClienteRepository, ClienteRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +55,9 @@ namespace WebAppRPv5
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

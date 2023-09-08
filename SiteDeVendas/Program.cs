@@ -9,10 +9,7 @@ namespace WebAppRPv5
     {
         public static void Main(string[] args)
         {
-            //criamos o método de extensão CreateAdminRole
-            CreateHostBuilder(args)
-               .Build()
-                .Run();
+            CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

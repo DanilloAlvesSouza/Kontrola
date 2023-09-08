@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KontrolaPoc.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace KontrolaPoc.Controllers
 {
     public class ChamadoController : Controller
     {
-        public IActionResult Index()
+        private readonly IChamadoRepository _chamadoReposity;
+
+        public ChamadoController(IChamadoRepository chamadoReposity)
         {
-            return View();
+            _chamadoReposity = chamadoReposity;
+        }
+
+        public IActionResult List()
+        {
+            var chamados = _chamadoReposity.Chamados;
+            return View(chamados);
         }
     }
 }

@@ -29,6 +29,7 @@ namespace WebAppRPv5
 
             services.AddTransient<IChamadoRepository, ChamadoRepository>();
             services.AddTransient<IClienteRepository, ClienteRepository>();
+            services.AddTransient<IGravidadeRepository, GravidadeRepository>();
 
         }
 

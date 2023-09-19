@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KontrolaPoc.Models
 {
-    [Table("Lanches")]
+    [Table("Cliente")]
     public class Cliente
     {
         [Key]

@@ -1,4 +1,5 @@
 ﻿using KontrolaPoc.Repositories.Interfaces;
+using KontrolaPoc.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KontrolaPoc.Controllers
@@ -14,8 +15,15 @@ namespace KontrolaPoc.Controllers
 
         public IActionResult List()
         {
-            var chamados = _chamadoReposity.Chamados;
-            return View(chamados);
+            //var chamados = _chamadoReposity.Chamados;
+            //return View(chamados);
+
+            var chamadosListViewModel = new ChamadosListViewModel();
+            chamadosListViewModel.Chamados = _chamadoReposity.Chamados;
+            chamadosListViewModel.StatusAtual = "Status Atual";
+
+            return View(chamadosListViewModel);
+            
         }
     }
 }

@@ -14,10 +14,12 @@ namespace KontrolaPoc.Repositories
             _context = context;
         }
 
-        public IEnumerable<Chamado> Chamados => _context.Chamados.Include(c =>c.Status)
-            .Include(c => c.DataInicio).Include(c => c.DataFechamento);
+        public IEnumerable<Chamado> Chamados => _context.Chamados;
 
 
-        public Chamado GetChamadoById(int chamadoId) => _context.Chamados.FirstOrDefault(I => I.ChamadoId == chamadoId);
+        //public IEnumerable<Chamado> Chamados => _context.Chamados.Include(c =>c.Status)
+        //.Include(c => c.DataInicio.ToString()).Include(c => c.DataFechamento.ToString());
+
+        //public Chamado GetChamadoById(int chamadoId) => _context.Chamados.FirstOrDefault(I => I.ChamadoId == chamadoId);
     }
 }

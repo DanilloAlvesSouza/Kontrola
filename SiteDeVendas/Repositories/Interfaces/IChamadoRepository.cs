@@ -6,7 +6,7 @@ namespace KontrolaPoc.Repositories.Interfaces
     {
         IEnumerable<Chamado> Chamados { get; }
 
-        Chamado GetChamadoById(int chamadoId);
+        //Chamado GetChamadoById(int chamadoId);
         //IEnumerable<Chamado> ChamadoStatus { get; }
         //IEnumerable<Chamado> ChamadosDataInicio { get; }
         //IEnumerable<Chamado> ChamadosDescricao { get; }

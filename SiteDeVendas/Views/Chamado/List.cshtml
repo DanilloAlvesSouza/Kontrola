@@ -1,14 +1,7 @@
 ﻿@model IEnumerable<KontrolaPoc.Models.Chamado>
 
-@{
-    ViewData["Title"] = "List";
-}
+<h1>Lista de Chamados</h1>
 
-<h1>List</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -22,28 +15,7 @@
                 @Html.DisplayNameFor(model => model.Descricao)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Diagnostico)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pendencia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Conclusao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Modalidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gravidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Urgencia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tendencia)
+                <p>Alterações</p>
             </th>
             <th></th>
         </tr>
@@ -60,34 +32,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Diagnostico)
+@*            <td>*@
+@*                @Html.DisplayFor(modelItem => item.Modalidade.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Pendencia)
+                @Html.DisplayFor(modelItem => item.Gravidade.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Conclusao)
+                @Html.DisplayFor(modelItem => item.Urgencia.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status.StatusId)
-            </td>
+                @Html.DisplayFor(modelItem => item.Tendencia.Descricao)
+            </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.Modalidade.ModalidadeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gravidade.GravidadeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Urgencia.UrgenciaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tendencia.TendenciaId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ChamadoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ChamadoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ChamadoId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ChamadoId">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.ChamadoId">Deletar</a>
             </td>
         </tr>
 }

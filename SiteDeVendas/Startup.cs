@@ -30,6 +30,13 @@ namespace WebAppRPv5
             services.AddTransient<IChamadoRepository, ChamadoRepository>();
             services.AddTransient<IClienteRepository, ClienteRepository>();
             services.AddTransient<IGravidadeRepository, GravidadeRepository>();
+            services.AddTransient<IEquipamentoRepository, EquipamentoRepository>();
+
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddMemoryCache();
+            services.AddSession();
 
         }
 
@@ -53,6 +60,8 @@ namespace WebAppRPv5
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

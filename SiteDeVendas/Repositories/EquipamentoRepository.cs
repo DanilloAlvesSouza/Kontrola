@@ -1,6 +1,21 @@
-﻿namespace KontrolaPoc.Repositories
+﻿using KontrolaPoc.Context;
+using KontrolaPoc.Models;
+using KontrolaPoc.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using SiteDeVendas.Models;
+using System.Diagnostics;
+
+namespace KontrolaPoc.Repositories
 {
-    public class EquipamentoRepository
+    public class EquipamentoRepository : IEquipamentoRepository
     {
+        private readonly AppDbContext _context;
+        
+        public EquipamentoRepository (AppDbContext context)
+        {
+            _context = context;
+        }
+
+        public IEnumerable<Equipamento> Equipamentos => _context.Equipamentos;
     }
 }

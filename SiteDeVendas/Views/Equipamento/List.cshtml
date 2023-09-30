@@ -1,0 +1,65 @@
+﻿@model IEnumerable<KontrolaPoc.Models.Equipamento>
+
+@{
+    ViewData["Title"] = "Lista de Equipamentos";
+}
+
+<h1 class="ListaEquip">Lista de Equipamentos <a href="">+</a> </h1>
+
+<p class="Equip">
+    <a asp-action="Create">Criar Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroSerie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Potencia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagemUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Filial)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroSerie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Potencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagemUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filial.FilialId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EquipamentoId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EquipamentoId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EquipamentoId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -15,6 +15,7 @@ namespace KontrolaPoc.Controllers
 
         public IActionResult List()
         {
+            ViewBag.OpcaoMenu = 2;
             //var chamados = _chamadoReposity.Chamados;
             //return View(chamados);
 

@@ -14,6 +14,7 @@ namespace KontrolaPoc.Controllers
 
         public IActionResult List()
         {
+            ViewBag.OpcaoMenu = 3;
             var gravidades = _gravidadeRepository.Gravidades;
             return View(gravidades);
         }

@@ -15,11 +15,13 @@ namespace SiteDeVendas.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.OpcaoMenu = 1;
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult QuemSomos()
         {
+            ViewBag.OpcaoMenu = 4;
             return View();
         }
 

@@ -12,16 +12,12 @@ html {
   position: relative;
   min-height: 100%;
 }
-.text-center{
-    color: white;
-}
 
-body {
+body{
     margin-bottom: 100px;
-    background-image: url(/images/fundo.jpeg);
+    background-color: #B0C4DE;
     background-size: 100%;
     background-attachment: scroll;
-    
 }
 .logo {
 /*    margin-left: 85%;*/
@@ -39,20 +35,18 @@ body {
     margin-left: 20px;
 }
 
-.table, .HeaderViews, .texto, h1,p{
-    color: white;
-}
+
 
 
 .nav-link:hover, .nav-link:focus{
-    color: black;
+    color: white;
     font-weight: 700;
     background-color: #a5a2a2;
 }
 
 .active {
     font-weight: 700;
-    border-bottom: 2px solid black ;
+    border-bottom: 2px double white;
 }
 
 .Equip{

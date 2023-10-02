@@ -8,13 +8,17 @@ namespace KontrolaPoc.Models
     {
         [Key]
         public int ClienteId { get; set; }
+
         [Required(ErrorMessage ="O nome do cliente deve ser informado")]
         [Display(Name ="Nome do Cliente")]
         public string Nome { get; set; }
+
         [Required(ErrorMessage ="CNPJ do cliente deve ser informado")]
         [Display(Name="CNPJ")]
         public string Cnpj { get; set; }
 
         public List<Filial> Filiais { get; set; }
+
+        public List<Equipamento> Equipamentos { get; set; }
     }
 }

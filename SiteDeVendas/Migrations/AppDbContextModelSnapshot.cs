@@ -146,27 +146,31 @@ namespace KontrolaPoc.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EquipamentoId"));
 
-                    b.Property<int>("FilialId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImagemUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Marca")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<string>("Modelo")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("NumeroSerie")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Potencia")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EquipamentoId");
 
-                    b.HasIndex("FilialId");
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Equipamentos");
                 });
@@ -351,13 +355,13 @@ namespace KontrolaPoc.Migrations
 
             modelBuilder.Entity("KontrolaPoc.Models.Equipamento", b =>
                 {
-                    b.HasOne("KontrolaPoc.Models.Filial", "Filial")
-                        .WithMany()
-                        .HasForeignKey("FilialId")
+                    b.HasOne("KontrolaPoc.Models.Cliente", "Cliente")
+                        .WithMany("Equipamentos")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Filial");
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("KontrolaPoc.Models.Filial", b =>
@@ -397,6 +401,8 @@ namespace KontrolaPoc.Migrations
 
             modelBuilder.Entity("KontrolaPoc.Models.Cliente", b =>
                 {
+                    b.Navigation("Equipamentos");
+
                     b.Navigation("Filiais");
                 });
 

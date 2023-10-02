@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KontrolaPoc.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230919155256_PopularChamados")]
-    partial class PopularChamados
+    [Migration("20231002030932_ajusteEquipamento")]
+    partial class ajusteEquipamento
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -149,7 +149,7 @@ namespace KontrolaPoc.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EquipamentoId"));
 
-                    b.Property<int>("FilialId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<string>("ImagemUrl")
@@ -169,7 +169,7 @@ namespace KontrolaPoc.Migrations
 
                     b.HasKey("EquipamentoId");
 
-                    b.HasIndex("FilialId");
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Equipamentos");
                 });
@@ -354,13 +354,13 @@ namespace KontrolaPoc.Migrations
 
             modelBuilder.Entity("KontrolaPoc.Models.Equipamento", b =>
                 {
-                    b.HasOne("KontrolaPoc.Models.Filial", "Filial")
-                        .WithMany()
-                        .HasForeignKey("FilialId")
+                    b.HasOne("KontrolaPoc.Models.Cliente", "Cliente")
+                        .WithMany("Equipamentos")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Filial");
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("KontrolaPoc.Models.Filial", b =>
@@ -400,6 +400,8 @@ namespace KontrolaPoc.Migrations
 
             modelBuilder.Entity("KontrolaPoc.Models.Cliente", b =>
                 {
+                    b.Navigation("Equipamentos");
+
                     b.Navigation("Filiais");
                 });
 

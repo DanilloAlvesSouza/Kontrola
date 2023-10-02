@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KontrolaPoc.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230919142629_PopularFilial")]
-    partial class PopularFilial
+    [Migration("20231002030004_testeEquipamento")]
+    partial class testeEquipamento
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

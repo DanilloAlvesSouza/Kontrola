@@ -1,4 +1,4 @@
-namespace SiteDeVendas.Models
+namespace Kontrola.Models
 {
     public class ErrorViewModel
     {

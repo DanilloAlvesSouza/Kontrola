@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SiteDeVendas.Models;
+using Kontrola.Models;
 using System.Diagnostics;
 
-namespace SiteDeVendas.Controllers
+namespace Kontrola.Controllers
 {
     public class HomeController : Controller
     {

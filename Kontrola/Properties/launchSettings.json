@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "SiteDeVendas": {
+    "Kontrola": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

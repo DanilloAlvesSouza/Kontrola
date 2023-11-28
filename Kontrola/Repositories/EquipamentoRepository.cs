@@ -2,7 +2,7 @@
 using KontrolaPoc.Models;
 using KontrolaPoc.Repositories.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using SiteDeVendas.Models;
+using Kontrola.Models;
 using System.Diagnostics;
 
 namespace KontrolaPoc.Repositories

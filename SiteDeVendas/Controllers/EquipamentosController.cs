@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KontrolaPoc.Context;
 using KontrolaPoc.Models;
 using KontrolaPoc.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KontrolaPoc.Controllers
 {
@@ -22,13 +19,13 @@ namespace KontrolaPoc.Controllers
             _equipamentoRepository = equipamentoRepository;
             _context = context;
         }
-
+        [Authorize]
         // GET: Equipamentos
         public async Task<IActionResult> Index()
         {
-            ViewBag.OpcaoMenu = 3;
-            var appDbContext = _context.Equipamentos.Include(e => e.Cliente);
-            return View(await appDbContext.ToListAsync());
+                ViewBag.OpcaoMenu = 3;
+                var appDbContext = _context.Equipamentos.Include(e => e.Cliente);
+                return View(await appDbContext.ToListAsync());            
         }
 
         // GET: Equipamentos/Details/5

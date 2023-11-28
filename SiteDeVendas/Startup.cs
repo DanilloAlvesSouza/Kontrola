@@ -1,13 +1,9 @@
 ﻿using KontrolaPoc.Context;
 using KontrolaPoc.Repositories;
 using KontrolaPoc.Repositories.Interfaces;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+using KontrolaPoc.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 // Unused usings removed.
 
 namespace WebAppRPv5
@@ -35,6 +31,16 @@ namespace WebAppRPv5
             services.AddTransient<IClienteRepository, ClienteRepository>();
             services.AddTransient<IGravidadeRepository, GravidadeRepository>();
             services.AddTransient<IEquipamentoRepository, EquipamentoRepository>();
+            services.AddScoped<ISeedUserRoleInitial,SeedUserRoleInitial>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin",
+                    politica => 
+                    {
+                        politica.RequireRole("Admin");
+                    });
+            });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -44,7 +50,8 @@ namespace WebAppRPv5
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            ISeedUserRoleInitial seedUserRoleInitial)
         {
             if (env.IsDevelopment())
             {
@@ -53,16 +60,19 @@ namespace WebAppRPv5
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
 
+            app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseAuthorization();
+            //cria perfil
+            seedUserRoleInitial.SeedRoles();
+            //cria os usuarios e atribui o perfil 
+            seedUserRoleInitial.SeedUsers();
+
 
             app.UseSession();
 
@@ -71,6 +81,10 @@ namespace WebAppRPv5
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                      name: "areas",
+                      pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

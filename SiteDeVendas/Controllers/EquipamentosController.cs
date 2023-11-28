@@ -7,15 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KontrolaPoc.Context;
 using KontrolaPoc.Models;
+using KontrolaPoc.Repositories.Interfaces;
 
 namespace KontrolaPoc.Controllers
 {
     public class EquipamentosController : Controller
     {
+        private readonly IEquipamentoRepository _equipamentoRepository;
         private readonly AppDbContext _context;
 
-        public EquipamentosController(AppDbContext context)
+        public EquipamentosController(IEquipamentoRepository equipamentoRepository, 
+            AppDbContext context)
         {
+            _equipamentoRepository = equipamentoRepository;
             _context = context;
         }
 
@@ -165,5 +169,16 @@ namespace KontrolaPoc.Controllers
         {
           return _context.Equipamentos.Any(e => e.EquipamentoId == id);
         }
+
+        //public ViewResult Search(string searchString)
+        //{
+        //    IEnumerable<Equipamento> equipamentos;
+        //    string searchEquipamento = string.Empty;
+
+        //    if(string.IsNullOrEmpty(searchString))
+        //    {
+        //        equipamentos = _context.Equipamentos.OrderBy(e => e.EquipamentoId);
+        //    }
+        //}
     }
 }

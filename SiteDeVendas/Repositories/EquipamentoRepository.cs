@@ -17,5 +17,10 @@ namespace KontrolaPoc.Repositories
         }
 
         public IEnumerable<Equipamento> Equipamentos => _context.Equipamentos;
+
+        public Equipamento GetEquipamentoById(int EquipamentoId)
+        {
+            return _context.Equipamentos.FirstOrDefault(e => e.EquipamentoId == EquipamentoId);   
+        }
     }
 }

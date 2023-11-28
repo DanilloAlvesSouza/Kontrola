@@ -25,7 +25,7 @@ namespace KontrolaPoc.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Lanches",
+                name: "Cliente",
                 columns: table => new
                 {
                     ClienteId = table.Column<int>(type: "int", nullable: false)
@@ -35,7 +35,7 @@ namespace KontrolaPoc.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Lanches", x => x.ClienteId);
+                    table.PrimaryKey("PK_Clientes", x => x.ClienteId);
                 });
 
             migrationBuilder.CreateTable(
@@ -322,7 +322,7 @@ namespace KontrolaPoc.Migrations
                 name: "Filiais");
 
             migrationBuilder.DropTable(
-                name: "Lanches");
+                name: "Clientes");
         }
     }
 }

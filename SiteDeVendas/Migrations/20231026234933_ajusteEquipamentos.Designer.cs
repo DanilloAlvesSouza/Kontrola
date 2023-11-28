@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KontrolaPoc.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231002045506_AjustesEquipamentos2")]
-    partial class AjustesEquipamentos2
+    [Migration("20231026234933_ajusteEquipamentos")]
+    partial class ajusteEquipamentos
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

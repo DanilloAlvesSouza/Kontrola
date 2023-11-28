@@ -3,6 +3,7 @@ using KontrolaPoc.Repositories;
 using KontrolaPoc.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,11 +28,13 @@ namespace WebAppRPv5
               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
 
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
             services.AddTransient<IChamadoRepository, ChamadoRepository>();
             services.AddTransient<IClienteRepository, ClienteRepository>();
             services.AddTransient<IGravidadeRepository, GravidadeRepository>();
             services.AddTransient<IEquipamentoRepository, EquipamentoRepository>();
-
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
@@ -62,6 +65,9 @@ namespace WebAppRPv5
             app.UseAuthorization();
 
             app.UseSession();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

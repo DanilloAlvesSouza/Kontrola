@@ -13,7 +13,7 @@
         <header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style=" background-color: #000080">
                 <div class="container-fluid">
-                        <a class ="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Kontrola</a>
+                    <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">Kontrola</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -24,22 +24,18 @@
                                 <a class="nav-link text-white @(ViewBag.OpcaoMenu == 1 ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link text-white @(ViewBag.OpcaoMenu == 2 ? "active" : "") " asp-area="" asp-controller="Chamado" asp-action="List">Chamados</a>
+                                <a class="nav-link text-white @(ViewBag.OpcaoMenu == 2 ? "active" : "") " asp-area="" asp-controller="Chamado" asp-action="List">Chamados</a>
                             </li>
                             <li class="nav-item">
-                                    <a class="nav-link text-white @(ViewBag.OpcaoMenu == 3 ? "active" : "") " asp-area="" asp-controller="Equipamentos" asp-action="Index">Equipamentos</a>
+                                <a class="nav-link text-white @(ViewBag.OpcaoMenu == 3 ? "active" : "") " asp-area="" asp-controller="Equipamentos" asp-action="Index">Equipamentos</a>
                             </li>
-                            <li class="nav-item">
-                                    <a class="nav-link text-white @(ViewBag.OpcaoMenu == 4 ? "active" : "")" asp-area="" asp-controller="Home" asp-action="QuemSomos">Quem Somos</a>
-                            </li>
+@*                             <li class="nav-item">
+                                <a class="nav-link text-white @(ViewBag.OpcaoMenu == 4 ? "active" : "")" asp-area="" asp-controller="Home" asp-action="QuemSomos">Quem Somos</a>
+                            </li> *@
                             <li class="nav-item">
                                 <a class="nav-link text-white @(ViewBag.OpcaoMenu == 5 ? "active" : "")" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
-                            </li>
+                            </li>                            
                         </ul>
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
                     </div>
                 </div>
             </nav>

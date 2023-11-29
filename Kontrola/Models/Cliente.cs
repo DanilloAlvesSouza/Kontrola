@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data;
 
 namespace KontrolaPoc.Models
 {
@@ -15,10 +17,25 @@ namespace KontrolaPoc.Models
 
         [Required(ErrorMessage ="CNPJ do cliente deve ser informado")]
         [Display(Name="CNPJ")]
+        [StringLength(12)]
         public string Cnpj { get; set; }
 
-        public List<Filial> Filiais { get; set; }
+        public string Logradouro { get; set; }
 
-        public List<Equipamento> Equipamentos { get; set; }
+        [Required(ErrorMessage = "Campo Obrigatório")]
+        [StringLength(9)]
+        public string Cep { get; set; }
+
+        [Required(ErrorMessage = "Campo Obrigatório")]
+        public string Bairro { get; set; }
+
+        [Required(ErrorMessage = "Campo Obrigatório")]
+        public string Cidade { get; set; }
+
+        [StringLength(2)]
+        [Required(ErrorMessage = "Campo Obrigatório")]
+        public string UF { get; set; }
+
+
     }
 }

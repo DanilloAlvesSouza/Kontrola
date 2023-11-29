@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using KontrolaPoc.Context;
 using KontrolaPoc.Models;
-using Microsoft.AspNetCore.Authorization;
+using ReflectionIT.Mvc.Paging;
 
 namespace KontrolaPoc.Controllers
 {
-    
+
     public class ClientesController : Controller
     {
         private readonly AppDbContext _context;
@@ -21,10 +16,28 @@ namespace KontrolaPoc.Controllers
             _context = context;
         }
 
+
+
+
         // GET: Clientes
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+        //      return View(await _context.Clientes.ToListAsync());
+        //}
+
+        public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "Nome")
         {
-              return View(await _context.Clientes.ToListAsync());
+            var resultado  = _context.Clientes.AsNoTracking().AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                resultado = resultado.Where(p =>p.Nome.Contains(filter));
+            }
+
+            var model = await PagingList.CreateAsync(resultado, 5, pageindex, sort, "Nome");
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+
+            return View(model);
         }
 
         // GET: Clientes/Details/5
@@ -48,6 +61,7 @@ namespace KontrolaPoc.Controllers
         // GET: Clientes/Create
         public IActionResult Create()
         {
+
             return View();
         }
 
@@ -56,7 +70,7 @@ namespace KontrolaPoc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClienteId,Nome,Cnpj")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("ClienteId,Nome,Cnpj,Bairro,Cep,Cidade,Logradouro,UF")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +102,7 @@ namespace KontrolaPoc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClienteId,Nome,Cnpj")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("ClienteId,Nome,Cnpj,Bairro,Cep,Cidade,Logradouro,UF")] Cliente cliente)
         {
             if (id != cliente.ClienteId)
             {

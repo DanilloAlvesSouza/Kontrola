@@ -4,6 +4,7 @@ using KontrolaPoc.Repositories.Interfaces;
 using KontrolaPoc.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 // Unused usings removed.
 
 namespace WebAppRPv5
@@ -28,15 +29,22 @@ namespace WebAppRPv5
                 .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
             services.AddTransient<IChamadoRepository, ChamadoRepository>();
+            services.AddTransient<IFilialRepository, FilialRepository>();
             services.AddTransient<IClienteRepository, ClienteRepository>();
             services.AddTransient<IGravidadeRepository, GravidadeRepository>();
             services.AddTransient<IEquipamentoRepository, EquipamentoRepository>();
-            services.AddScoped<ISeedUserRoleInitial,SeedUserRoleInitial>();
+            services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
+
+            services.AddPaging(options =>
+            {
+                options.ViewName = "Bootstrap4";
+                options.PageParameterName = "pageindex";
+            });
 
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("Admin",
-                    politica => 
+                    politica =>
                     {
                         politica.RequireRole("Admin");
                     });
@@ -44,10 +52,17 @@ namespace WebAppRPv5
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
+            services.AddControllersWithViews();
+
+
             services.AddMemoryCache();
             services.AddSession();
 
+
+
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,

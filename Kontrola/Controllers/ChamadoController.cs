@@ -48,11 +48,11 @@ namespace KontrolaPoc.Controllers
         // GET: Chamado/Create
         public IActionResult Create()
         {
-            ViewData["GravidadeId"] = new SelectList(_context.Gravidades, "GravidadeId", "GravidadeId");
-            ViewData["ModalidadeId"] = new SelectList(_context.Modalidades, "ModalidadeId", "ModalidadeId");
-            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusId");
-            ViewData["TendenciaId"] = new SelectList(_context.Tendencias, "TendenciaId", "TendenciaId");
-            ViewData["UrgenciaId"] = new SelectList(_context.Urgencias, "UrgenciaId", "UrgenciaId");
+            ViewData["GravidadeId"] = new SelectList(_context.Gravidades, "GravidadeId", "Descricao");
+            ViewData["ModalidadeId"] = new SelectList(_context.Modalidades, "ModalidadeId", "Descricao");
+            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "Descricao");
+            ViewData["TendenciaId"] = new SelectList(_context.Tendencias, "TendenciaId", "Descricao");
+            ViewData["UrgenciaId"] = new SelectList(_context.Urgencias, "UrgenciaId", "Descricao");
             return View();
         }
 

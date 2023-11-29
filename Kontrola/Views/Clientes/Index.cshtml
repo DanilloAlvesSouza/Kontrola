@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KontrolaPoc.Models.Cliente>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<KontrolaPoc.Models.Cliente>
 
 @{
     ViewData["Title"] = "Clientes";
@@ -6,8 +6,23 @@
 
 <h1>Clientes</h1>
 
+<div class="input-group rounded">
+<form method="get" class="d-flex">
+    <input name="filter" class="form-control rounded" placeholder="Pesquisar"
+           value="@Model.RouteValue["Filter"]" />
+        <button type="submit" class="btn btn-outline-primary">
+        <span class="glyphicon glyphicon-search" aria-hiden="true"></span> Procurar
+    </button>
+</form>
+</div>
+
+
+Total de clientes : @Model.TotalRecordCount
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
 <p>
-    <a asp-action="Create">Criar novo</a>
+    <a asp-action="Create">Criar novo cliente</a>
 </p>
 <table class="table">
     <thead>
@@ -22,20 +37,21 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cnpj)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ClienteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ClienteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ClienteId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cnpj)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ClienteId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ClienteId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ClienteId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

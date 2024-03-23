@@ -1,15 +1,29 @@
-﻿@model IEnumerable<KontrolaPoc.Models.Chamado>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<KontrolaPoc.Models.Chamado>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
+<div class="row">
+    <h3 class="col">Listar chamados</h3>
+    <div class="col input-group rounded">
+        <form method="get" class="d-flex">
+            <input name="filter" class="form-control rounded" placeholder="Pesquisar Chamado"
+                   value="@Model.RouteValue["Filter"]" />
+            <button type="submit" class="btn btn-outline-primary">
+                <span class="glyphicon glyphicon-search" aria-hiden="true"></span> Procurar
+            </button>
+        </form>
+    </div>
+</div>
+Total de chamados : @Model.TotalRecordCount
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-success">Novo chamado</a>
 </p>
-<table class="table">
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>
@@ -20,15 +34,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Diagnostico)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pendencia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Conclusao)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
@@ -45,51 +50,47 @@
             <th>
                 @Html.DisplayNameFor(model => model.Tendencia)
             </th>
-            <th></th>
+            <th>
+                Ações
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataInicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataFechamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Diagnostico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pendencia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Conclusao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status.StatusId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Modalidade.ModalidadeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gravidade.GravidadeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Urgencia.UrgenciaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tendencia.TendenciaId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ChamadoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ChamadoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ChamadoId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataFechamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modalidade.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gravidade.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Urgencia.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tendencia.Descricao)
+                </td>
+                <td>
+                    <div class="btn-group-sm" role="group" aria-label="Exemplo básico">
+                        <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@item.ChamadoId">Editar</a>
+                        <a asp-action="Details" class="btn btn-outline-info" asp-route-id="@item.ChamadoId">Detalhes</a>
+                        <a asp-action="Delete" class="btn btn-outline-info" asp-route-id="@item.ChamadoId">Exluir</a>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

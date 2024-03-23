@@ -27,6 +27,7 @@ namespace KontrolaPoc.Controllers
 
         public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "Nome")
         {
+            
             var resultado  = _context.Clientes.AsNoTracking().AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(filter))
@@ -38,6 +39,7 @@ namespace KontrolaPoc.Controllers
             model.RouteValue = new RouteValueDictionary { { "filter", filter } };
 
             return View(model);
+            
         }
 
         // GET: Clientes/Details/5

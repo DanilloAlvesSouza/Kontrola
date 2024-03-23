@@ -60,29 +60,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Descricao)
             </td>
+
             <td>
-                @Html.DisplayFor(modelItem => item.Diagnostico)
+                @Html.DisplayFor(modelItem => item.Status.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Pendencia)
+                    @Html.DisplayFor(modelItem => item.Modalidade.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Conclusao)
+                    @Html.DisplayFor(modelItem => item.Gravidade.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status.StatusId)
+                    @Html.DisplayFor(modelItem => item.Urgencia.Descricao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Modalidade.ModalidadeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gravidade.GravidadeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Urgencia.UrgenciaId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tendencia.TendenciaId)
+                    @Html.DisplayFor(modelItem => item.Tendencia.Descricao)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ChamadoId">Edit</a> |

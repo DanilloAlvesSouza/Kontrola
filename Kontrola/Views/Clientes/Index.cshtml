@@ -3,37 +3,48 @@
 @{
     ViewData["Title"] = "Clientes";
 }
-
-<h1>Clientes</h1>
-
-<div class="input-group rounded">
-<form method="get" class="d-flex">
-    <input name="filter" class="form-control rounded" placeholder="Pesquisar"
-           value="@Model.RouteValue["Filter"]" />
-        <button type="submit" class="btn btn-outline-primary">
-        <span class="glyphicon glyphicon-search" aria-hiden="true"></span> Procurar
-    </button>
-</form>
+<div class="row">
+    <h3 class="col">Listar Chamads</h3>
+    <div class="col input-group rounded">
+        <form method="get" class="d-flex">
+            <input name="filter" class="form-control rounded" placeholder="Pesquisar Cliente"
+                   value="@Model.RouteValue["Filter"]" />
+            <button type="submit" class="btn btn-outline-primary">
+                <span class="glyphicon glyphicon-search" aria-hiden="true"></span> Procurar
+            </button>
+        </form>
+    </div>
 </div>
-
 
 Total de clientes : @Model.TotalRecordCount
 <div>
     <vc:pager paging-list="@Model"></vc:pager>
 </div>
 <p>
-    <a asp-action="Create">Criar novo cliente</a>
+    <a asp-action="Create" class="btn btn-success">Criar novo cliente</a>
 </p>
-<table class="table">
+<table class="table table-bordered">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cnpj)
+                @Html.DisplayNameFor(model => model.Logradouro)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UF)
+            </th>
+            <th>
+                Ações
+
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -44,12 +55,23 @@ Total de clientes : @Model.TotalRecordCount
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cnpj)
+                    @Html.DisplayFor(modelItem => item.Logradouro)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ClienteId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ClienteId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ClienteId">Delete</a>
+                    @Html.DisplayFor(modelItem => item.Cidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bairro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UF)
+                </td>
+                <td>
+                    <div class="btn-group-sm" role="group" aria-label="Exemplo básico">
+                        <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@item.ClienteId">Editar</a>
+                        <a asp-action="Details" class="btn btn-outline-info" asp-route-id="@item.ClienteId">Detalhes</a>
+                        <a asp-action="Delete" class="btn btn-outline-info" asp-route-id="@item.ClienteId">Exluir</a>
+                    </div>
                 </td>
             </tr>
         }

@@ -26,22 +26,6 @@
             <span asp-validation-for="Descricao" class="text-danger"></span>
         </div>
         <div class="col">
-            <label asp-for="Diagnostico" class="control-label"></label>
-            <input asp-for="Diagnostico" class="form-control" />
-            <span asp-validation-for="Diagnostico" class="text-danger"></span>
-        </div>
-        <div class="col">
-            <label asp-for="Pendencia" class="control-label"></label>
-            <input asp-for="Pendencia" class="form-control" />
-            <span asp-validation-for="Pendencia" class="text-danger"></span>
-        </div>
-        <div class="col">
-            <label asp-for="Conclusao" class="control-label"></label>
-            <input asp-for="Conclusao" class="form-control" />
-            <span asp-validation-for="Conclusao" class="text-danger"></span>
-        </div>
-
-        <div class="col">
             <label asp-for="StatusId" class="control-label"></label>
             <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
         </div>
@@ -61,6 +45,25 @@
             <label asp-for="TendenciaId" class="control-label"></label>
             <select asp-for="TendenciaId" class="form-control" asp-items="ViewBag.TendenciaId"></select>
         </div>
+        <div class="col">
+            <label asp-for="TendenciaId" class="control-label"></label>
+            <select asp-for="TendenciaId" class="form-control" asp-items="ViewBag.TendenciaId"></select>
+        </div>
+        <div class="col">
+            <label asp-for="Diagnostico" class="control-label"></label>
+            <input asp-for="Diagnostico" class="form-control" />
+            <span asp-validation-for="Diagnostico" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <label asp-for="Pendencia" class="control-label"></label>
+            <input asp-for="Pendencia" class="form-control" />
+            <span asp-validation-for="Pendencia" class="text-danger"></span>
+        </div>
+        <div class="col">
+            <label asp-for="Conclusao" class="control-label"></label>
+            <input asp-for="Conclusao" class="form-control" />
+            <span asp-validation-for="Conclusao" class="text-danger"></span>
+        </div>  
 
 
         <div class="col">
@@ -71,7 +74,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltar a pagina anterior</a>
 </div>
 
 

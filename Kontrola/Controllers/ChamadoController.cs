@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KontrolaPoc.Context;
 using KontrolaPoc.Models;
+using ReflectionIT.Mvc.Paging;
 
 namespace KontrolaPoc.Controllers
 {
@@ -16,14 +17,32 @@ namespace KontrolaPoc.Controllers
         }
 
         // GET: Chamado
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+        //    var appDbContext = _context.Chamados.Include(c => c.Gravidade).Include(c => c.Modalidade).Include(c => c.Status).Include(c => c.Tendencia).Include(c => c.Urgencia).Include(c => c.ItemChamados);
+        //    return View(await appDbContext.ToListAsync());
+        //}
+
+        public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "Descricao")
         {
-            var appDbContext = _context.Chamados.Include(c => c.Gravidade).Include(c => c.Modalidade).Include(c => c.Status).Include(c => c.Tendencia).Include(c => c.Urgencia).Include(c => c.ItemChamados);
-            return View(await appDbContext.ToListAsync());
+
+            var resultado = _context.Chamados.Include(c => c.Gravidade).Include(c => c.Modalidade).Include(c => c.Status)
+                                .Include(c => c.Tendencia).Include(c => c.Urgencia).Include(c => c.ItemChamados)
+                                .AsNoTracking().AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                resultado = resultado.Where(p => p.Descricao.Contains(filter));
+            }
+
+            var model = await PagingList.CreateAsync(resultado, 5, pageindex, sort, "Descricao");
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+
+            return View(model);
         }
 
-        // GET: Chamado/Details/5
-        public async Task<IActionResult> Details(int? id)
+            // GET: Chamado/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Chamados == null)
             {

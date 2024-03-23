@@ -103,9 +103,9 @@ namespace KontrolaPoc.Migrations
                 {
                     table.PrimaryKey("PK_Filiais", x => x.FilialId);
                     table.ForeignKey(
-                        name: "FK_Filiais_Lanches_ClienteId",
+                        name: "FK_Filiais_Clientes_ClienteId",
                         column: x => x.ClienteId,
-                        principalTable: "Lanches",
+                        principalTable: "Cliente",
                         principalColumn: "ClienteId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -198,16 +198,16 @@ namespace KontrolaPoc.Migrations
                     NumeroSerie = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Potencia = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImagemUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FilialId = table.Column<int>(type: "int", nullable: false)
+                    ClienteId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Equipamentos", x => x.EquipamentoId);
                     table.ForeignKey(
-                        name: "FK_Equipamentos_Filiais_FilialId",
-                        column: x => x.FilialId,
-                        principalTable: "Filiais",
-                        principalColumn: "FilialId",
+                        name: "FK_Equipamentos_Cliente_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Cliente",
+                        principalColumn: "ClienteId",
                         onDelete: ReferentialAction.Cascade);
                 });
 

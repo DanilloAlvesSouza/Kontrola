@@ -27,9 +27,8 @@ namespace KontrolaPoc.Models
 
         [Required(ErrorMessage = "Selecione um cliente")]
         [Display(Name ="Localidade ?")]
-
-        public int ClienteId { get; set; }
-        public virtual Cliente Cliente { get; set; }
+        public int FilialId { get; set; }
+        public virtual Filial Filial { get; set; }
 
 
     }

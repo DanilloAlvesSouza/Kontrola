@@ -12,7 +12,7 @@ namespace KontrolaPoc.Models
         public int ClienteId { get; set; }
 
         [Required(ErrorMessage ="O nome do cliente deve ser informado")]
-        [Display(Name ="Nome do Cliente")]
+        [Display(Name = "Nome Fantasia")]
         public string Nome { get; set; }
 
         [Required(ErrorMessage ="CNPJ do cliente deve ser informado")]
@@ -20,10 +20,12 @@ namespace KontrolaPoc.Models
         [StringLength(12)]
         public string Cnpj { get; set; }
 
+        [Required(ErrorMessage = "Campo Obrigatório")]
         public string Logradouro { get; set; }
 
         [Required(ErrorMessage = "Campo Obrigatório")]
         [StringLength(9)]
+        [Display(Name = "CEP")]
         public string Cep { get; set; }
 
         [Required(ErrorMessage = "Campo Obrigatório")]
@@ -36,6 +38,7 @@ namespace KontrolaPoc.Models
         [Required(ErrorMessage = "Campo Obrigatório")]
         public string UF { get; set; }
 
+        //public List<Equipamento> Equipamentos { get; set; }
 
     }
 }

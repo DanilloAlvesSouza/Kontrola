@@ -5,6 +5,7 @@ using KontrolaPoc.Context;
 using KontrolaPoc.Models;
 using KontrolaPoc.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using ReflectionIT.Mvc.Paging;
 
 namespace KontrolaPoc.Controllers
 {
@@ -21,15 +22,32 @@ namespace KontrolaPoc.Controllers
         }
         [Authorize]
         // GET: Equipamentos
-        public async Task<IActionResult> Index()
+        //public async Task<IActionResult> Index()
+        //{
+
+        //        var appDbContext = _context.Equipamentos.Include(e => e.Cliente);
+        //        return View(await appDbContext.ToListAsync());            
+        //}
+
+        public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "NumeroSerie")
         {
-                ViewBag.OpcaoMenu = 3;
-                var appDbContext = _context.Equipamentos.Include(e => e.Cliente);
-                return View(await appDbContext.ToListAsync());            
+
+            var resultado = _context.Equipamentos.Include(e => e.Filial).AsNoTracking().AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(filter))
+            {
+                resultado = resultado.Where(p => p.NumeroSerie.Contains(filter));
+            }
+
+            var model = await PagingList.CreateAsync(resultado, 5, pageindex, sort, "NumeroSerie");
+            model.RouteValue = new RouteValueDictionary { { "filter", filter } };
+
+            return View(model);
         }
 
-        // GET: Equipamentos/Details/5
-        public async Task<IActionResult> Details(int? id)
+
+            // GET: Equipamentos/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Equipamentos == null)
             {
@@ -37,7 +55,7 @@ namespace KontrolaPoc.Controllers
             }
 
             var equipamento = await _context.Equipamentos
-                .Include(e => e.Cliente)
+                .Include(e => e.Filial)
                 .FirstOrDefaultAsync(m => m.EquipamentoId == id);
             if (equipamento == null)
             {
@@ -50,7 +68,7 @@ namespace KontrolaPoc.Controllers
         // GET: Equipamentos/Create
         public IActionResult Create()
         {
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Cnpj");
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Nome");
             return View();
         }
 
@@ -59,7 +77,7 @@ namespace KontrolaPoc.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EquipamentoId,Marca,Modelo,NumeroSerie,Potencia,ImagemUrl,ClienteId")] Equipamento equipamento)
+        public async Task<IActionResult> Create([Bind("EquipamentoId,Marca,Modelo,NumeroSerie,Potencia,ClienteId")] Equipamento equipamento)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +85,7 @@ namespace KontrolaPoc.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Cnpj", equipamento.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Cnpj", equipamento.FilialId);
             return View(equipamento);
         }
 
@@ -84,7 +102,7 @@ namespace KontrolaPoc.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Cnpj", equipamento.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Nome", equipamento.FilialId);
             return View(equipamento);
         }
 
@@ -120,7 +138,7 @@ namespace KontrolaPoc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Cnpj", equipamento.ClienteId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Cnpj", equipamento.FilialId);
             return View(equipamento);
         }
 
@@ -133,7 +151,7 @@ namespace KontrolaPoc.Controllers
             }
 
             var equipamento = await _context.Equipamentos
-                .Include(e => e.Cliente)
+                .Include(e => e.Filial)
                 .FirstOrDefaultAsync(m => m.EquipamentoId == id);
             if (equipamento == null)
             {

@@ -4,6 +4,7 @@ using KontrolaPoc.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KontrolaPoc.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231130140521_Ajuste tabela chamado")]
+    partial class Ajustetabelachamado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -168,7 +171,7 @@ namespace KontrolaPoc.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EquipamentoId"));
 
-                    b.Property<int>("FilialId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<string>("Marca")
@@ -192,7 +195,7 @@ namespace KontrolaPoc.Migrations
 
                     b.HasKey("EquipamentoId");
 
-                    b.HasIndex("FilialId");
+                    b.HasIndex("ClienteId");
 
                     b.ToTable("Equipamentos");
                 });
@@ -575,13 +578,13 @@ namespace KontrolaPoc.Migrations
 
             modelBuilder.Entity("KontrolaPoc.Models.Equipamento", b =>
                 {
-                    b.HasOne("KontrolaPoc.Models.Filial", "Filial")
+                    b.HasOne("KontrolaPoc.Models.Cliente", "Cliente")
                         .WithMany()
-                        .HasForeignKey("FilialId")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Filial");
+                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("KontrolaPoc.Models.Filial", b =>

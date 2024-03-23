@@ -1,21 +1,31 @@
-﻿@model IEnumerable<KontrolaPoc.Models.Equipamento>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<KontrolaPoc.Models.Equipamento>
 
 @{
     ViewData["Title"] = "Clientes";
 }
 
-<h4>Lista de Equipamentos</h4>
-<p>
-    <a class="btn btn-success" asp-action="Create">Novo equipamento</a>
-    <div class="d-flex mb-3 align-items-end flex-column mb-3">
-        <form class="d-flex align-items-end" asp-controller="Equipamentos" asp-action="Search" method="get">
-            <input class="form-control p-2 " type="search" aria-label="Search"
-                   name="searchString" value="@ViewData["searchString"]">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+<div class="row">
+    <h3 class="col">Listar Equipamentos</h3>
+    <div class="col input-group rounded">
+        <form method="get" class="d-flex">
+            <input name="filter" class="form-control rounded" placeholder="Pesquisar Cliente"
+                   value="@Model.RouteValue["Filter"]" />
+            <button type="submit" class="btn btn-outline-primary">
+                <span class="glyphicon glyphicon-search" aria-hiden="true"></span> Procurar
+            </button>
         </form>
     </div>
+</div>
+
+
+Total de clientes : @Model.TotalRecordCount
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
+<p>
+    <a asp-action="Create" class="btn btn-success">Criar novo equipamento</a>
 </p>
-<table class="table">
+<table class="table  table-bordered">
     <thead>
         <tr>
             <th>
@@ -31,9 +41,11 @@
                 @Html.DisplayNameFor(model => model.Potencia)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cliente)
+                @Html.DisplayNameFor(model => model.Filial)
             </th>
-            <th></th>
+            <th>
+                Ações
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -53,27 +65,16 @@
                     @Html.DisplayFor(modelItem => item.Potencia)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                    @Html.DisplayFor(modelItem => item.Filial.Cliente.Nome)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.EquipamentoId">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.EquipamentoId">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.EquipamentoId">Deletar</a>
+                    <div class="btn-group-sm" role="group" aria-label="Exemplo básico">
+                        <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@item.FilialId">Editar</a>
+                        <a asp-action="Details" class="btn btn-outline-info" asp-route-id="@item.FilialId">Detalhes</a>
+                        <a asp-action="Delete" class="btn btn-outline-info" asp-route-id="@item.FilialId">Exluir</a>
+                    </div>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Anterior</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Próxima</a>
-        </li>
-    </ul>
-</nav>

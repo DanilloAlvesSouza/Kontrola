@@ -18,7 +18,6 @@ namespace KontrolaPoc.Models
         [Required(ErrorMessage = "Informe a descrição")]
         public string Descricao{ get; set; }
 
-        [Required(ErrorMessage = "Informe o diagnostico")]
         public string  Diagnostico { get; set; }
 
         public string Pendencia { get; set; }

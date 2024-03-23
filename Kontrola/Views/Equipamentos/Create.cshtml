@@ -6,23 +6,22 @@
 
 <h4>Novo Equipamento</h4>
 <hr />
-<div class="row">
-<div class="col-md-3">
+
 <form class="form-row" asp-action="Create">
-    <div class="form-row">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group col-sm-6">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col">
             <label asp-for="Marca" class="control-label"></label>
             <input asp-for="Marca" class="form-control" />
             <span asp-validation-for="Marca" class="text-danger"></span>
         </div>
-        <div class="form-group col-sm-6">
+        <div class="col">
             <label asp-for="Modelo" class="control-label"></label>
             <input asp-for="Modelo" class="form-control" />
             <span asp-validation-for="Modelo" class="text-danger"></span>
         </div>
     </div>
-    <div class="form-row">
+    <div class="row">
         <div class="col">
             <label asp-for="NumeroSerie" class="control-label"></label>
             <input asp-for="NumeroSerie" class="form-control" />
@@ -34,20 +33,16 @@
             <span asp-validation-for="Potencia" class="text-danger"></span>
         </div>
         <div class="col">
-            <label asp-for="ClienteId" class="control-label"></label>
-            <select asp-for="Cliente.Nome" class="form-control" asp-items="ViewBag.ClienteId"></select>
+            <label asp-for="FilialId" class="control-label"></label>
+            <select asp-for="Filial.Cliente.Nome" class="form-control" asp-items="ViewBag.ClienteId"></select>
         </div>
+    </div>
+    <div class="row mt-3">
         <div class="col">
-            <input type="submit" value="Criar" class="btn btn-primary" />
+            <a asp-action="Index" class="btn btn-danger mr-3">Cancelar</a>
+            <input type="submit" value="Create" class="btn btn-primary mx-3" />
         </div>
     </div>
 </form>
-    </div>
-</div>
 
-<br />
-<br />
-<div>
-    <a asp-action="Index">Voltar</a>
-</div>
 

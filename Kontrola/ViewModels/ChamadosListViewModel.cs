@@ -6,7 +6,7 @@ namespace KontrolaPoc.ViewModels
     {
         public IEnumerable<Chamado> Chamados { get; set; }
         public string StatusAtual { get; set; } 
-
+       
 
     }
 }

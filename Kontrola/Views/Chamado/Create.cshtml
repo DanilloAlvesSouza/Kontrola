@@ -1,7 +1,7 @@
 ﻿@model KontrolaPoc.Models.Chamado
 
 @{
-    ViewData["Title"] = "Create";
+	ViewData["Title"] = "Create";
 }
 
 <h1>Criar chamado</h1>
@@ -9,69 +9,65 @@
 <hr />
 
 <form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="row">
-        <div class="col">
-            <label asp-for="DataInicio" class="control-label"></label>
-            <input asp-for="DataInicio" class="form-control" />
-            <span asp-validation-for="DataInicio" class="text-danger"></span>
-        </div>
-        <div class="col">
-            <label asp-for="DataFechamento" class="control-label"></label>
-            <input asp-for="DataFechamento" class="form-control" />
-            <span asp-validation-for="DataFechamento" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <label asp-for="StatusId" class="control-label"></label>
-            <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
-        </div>
-        <div class="col">
-            <label asp-for="ModalidadeId" class="control-label"></label>
-            <select asp-for="ModalidadeId" class="form-control" asp-items="ViewBag.ModalidadeId"></select>
-        </div>
-        <div class="col">
-            <label asp-for="GravidadeId" class="control-label"></label>
-            <select asp-for="GravidadeId" class="form-control" asp-items="ViewBag.GravidadeId"></select>
-        </div>
-        <div class="col">
-            <label asp-for="UrgenciaId" class="control-label"></label>
-            <select asp-for="UrgenciaId" class="form-control" asp-items="ViewBag.UrgenciaId"></select>
-        </div>
-        <div class="col">
-            <label asp-for="TendenciaId" class="control-label"></label>
-            <select asp-for="TendenciaId" class="form-control" asp-items="ViewBag.TendenciaId"></select>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <label asp-for="Descricao" class="control-label"></label>
-            <textarea asp-for="Descricao" class="form-control" rows="2"></textarea>
-            <span asp-validation-for="Descricao" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Diagnostico" class="control-label"></label>
-        <textarea asp-for="Diagnostico" class="form-control" rows="2"></textarea>
-        <span asp-validation-for="Diagnostico" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Pendencia" class="control-label"></label>
-        <textarea asp-for="Pendencia" class="form-control" rows="3"></textarea>
-        <span asp-validation-for="Pendencia" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Conclusao" class="control-label"></label>
-        <textarea asp-for="Conclusao" class="form-control" rows="2"></textarea>
-        <span asp-validation-for="Conclusao" class="text-danger"></span>
-    </div>
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+	<div class="row">
+		<div class="col">
+			<label asp-for="DataInicio" class="control-label">Data Inicio</label>
+			<input asp-for="DataInicio" class="form-control" />
+			<span asp-validation-for="DataInicio" class="text-danger"></span>
+		</div>
+		<div class="col">
+			<label asp-for="DataFechamento" class="control-label">Data Encerramento</label>
+			<input asp-for="DataFechamento" class="form-control" />
+			<span asp-validation-for="DataFechamento" class="text-danger"></span>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<label asp-for="Status" class="control-label"></label>
+			<select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
+		</div>
+		<div class="col">
+			<label asp-for="Modalidade" class="control-label"></label>
+			<select asp-for="ModalidadeId" class="form-control" asp-items="ViewBag.ModalidadeId"></select>
+		</div>
+		<div class="col">
+			<label asp-for="Gravidade" class="control-label"></label>
+			<select asp-for="GravidadeId" class="form-control" asp-items="ViewBag.GravidadeId"></select>
+		</div>
+		<div class="col">
+			<label asp-for="Urgencia" class="control-label">Urgência</label>
+			<select asp-for="UrgenciaId" class="form-control" asp-items="ViewBag.UrgenciaId"></select>
+		</div>
+		<div class="col">
+			<label asp-for="Tendencia" class="control-label">Tendência</label>
+			<select asp-for="TendenciaId" class="form-control" asp-items="ViewBag.TendenciaId"></select>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<label asp-for="Descricao" class="control-label">Descrição</label>
+			<textarea asp-for="Descricao" class="form-control" rows="2"></textarea>
+			<span asp-validation-for="Descricao" class="text-danger"></span>
+		</div>
+	</div>
 
-    <div class="row mt-3">
-        <div class="col">
-            <a asp-action="Index" class="btn btn-danger mr-3">Cancelar</a>
-            <input type="submit" value="Create" class="btn btn-primary mx-3" />
-        </div>
-    </div>
+
+	<div class="row mt-3">
+		<div class="input-group mb-3">
+			<label class="input-group-text" for="inputGroupFile01">Salvar</label>
+			<input type="file" class="form-control" id="inputGroupFile01">
+		</div>
+	</div>
+
+
+
+
+	<div class="row mt-3">
+		<div class="col">
+			<a asp-action="Index" class="btn btn-danger mr-3">Cancelar</a>
+			<input type="submit" value="Criar" class="btn btn-primary mx-3" />
+		</div>
+	</div>
 </form>
 

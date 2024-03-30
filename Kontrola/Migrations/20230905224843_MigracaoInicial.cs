@@ -267,10 +267,10 @@ namespace KontrolaPoc.Migrations
                 table: "Enderecos",
                 column: "FilialId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Equipamentos_FilialId",
-                table: "Equipamentos",
-                column: "FilialId");
+            //migrationBuilder.CreateIndex(
+            //    name: "IX_Equipamentos_FilialId",
+            //    table: "Equipamentos",
+            //    column: "FilialId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Filiais_ClienteId",

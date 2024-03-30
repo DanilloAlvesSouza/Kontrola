@@ -10,23 +10,23 @@ namespace KontrolaPoc.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Equipamentos_Filiais_FilialId",
-                table: "Equipamentos");
+            //migrationBuilder.DropForeignKey(
+            //    name: "FK_Equipamentos_Filiais_FilialId",
+            //    table: "Equipamentos");
 
             migrationBuilder.DropColumn(
                 name: "ImagemUrl",
                 table: "Equipamentos");
 
-            migrationBuilder.RenameColumn(
-                name: "FilialId",
-                table: "Equipamentos",
-                newName: "ClienteId");
+            //migrationBuilder.RenameColumn(
+            //    name: "FilialId",
+            //    table: "Equipamentos",
+            //    newName: "ClienteId");
 
-            migrationBuilder.RenameIndex(
-                name: "IX_Equipamentos_FilialId",
-                table: "Equipamentos",
-                newName: "IX_Equipamentos_ClienteId");
+            //migrationBuilder.RenameIndex(
+            //    name: "IX_Equipamentos_FilialId",
+            //    table: "Equipamentos",
+            //    newName: "IX_Equipamentos_ClienteId");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Potencia",
@@ -71,13 +71,13 @@ namespace KontrolaPoc.Migrations
                 oldType: "nvarchar(max)",
                 oldNullable: true);
 
-            migrationBuilder.AddForeignKey(
-                name: "FK_Equipamentos_Cliente_ClienteId",
-                table: "Equipamentos",
-                column: "ClienteId",
-                principalTable: "Cliente",
-                principalColumn: "ClienteId",
-                onDelete: ReferentialAction.Cascade);
+            //migrationBuilder.AddForeignKey(
+            //    name: "FK_Equipamentos_Cliente_ClienteId",
+            //    table: "Equipamentos",
+            //    column: "ClienteId",
+            //    principalTable: "Cliente",
+            //    principalColumn: "ClienteId",
+            //    onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />

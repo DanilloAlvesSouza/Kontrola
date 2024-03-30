@@ -19,10 +19,10 @@ namespace KontrolaPoc.Migrations
                 table: "Equipamentos",
                 newName: "FilialId");
 
-            migrationBuilder.RenameIndex(
-                name: "IX_Equipamentos_ClienteId",
-                table: "Equipamentos",
-                newName: "IX_Equipamentos_FilialId");
+            //migrationBuilder.RenameIndex(
+            //    name: "IX_Equipamentos_ClienteId",
+            //    table: "Equipamentos",
+            //    newName: "IX_Equipamentos_FilialId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Equipamentos_Filiais_FilialId",

@@ -12,36 +12,48 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row">
         <div class="col">
-            <label asp-for="DataInicio" class="control-label"></label>
+            <label asp-for="DataInicio" class="control-label">Data de Inicio</label>
             <input asp-for="DataInicio" class="form-control" />
             <span asp-validation-for="DataInicio" class="text-danger"></span>
         </div>
         <div class="col">
-            <label asp-for="DataFechamento" class="control-label"></label>
+            <label asp-for="DataFechamento" class="control-label">Data Término</label>
             <input asp-for="DataFechamento" class="form-control" />
             <span asp-validation-for="DataFechamento" class="text-danger"></span>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <label asp-for="StatusId" class="control-label"></label>
+            <label asp-for="StatusId" class="control-label">Status</label>
             <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
         </div>
         <div class="col">
-            <label asp-for="ModalidadeId" class="control-label"></label>
+            <label asp-for="ModalidadeId" class="control-label">Modalidade</label>
             <select asp-for="ModalidadeId" class="form-control" asp-items="ViewBag.ModalidadeId"></select>
         </div>
         <div class="col">
-            <label asp-for="GravidadeId" class="control-label"></label>
+            <label asp-for="GravidadeId" class="control-label">Gravidade</label>
             <select asp-for="GravidadeId" class="form-control" asp-items="ViewBag.GravidadeId"></select>
         </div>
         <div class="col">
-            <label asp-for="UrgenciaId" class="control-label"></label>
+            <label asp-for="UrgenciaId" class="control-label">Urgencia</label>
             <select asp-for="UrgenciaId" class="form-control" asp-items="ViewBag.UrgenciaId"></select>
         </div>
         <div class="col">
-            <label asp-for="TendenciaId" class="control-label"></label>
+            <label asp-for="TendenciaId" class="control-label">Tendência</label>
             <select asp-for="TendenciaId" class="form-control" asp-items="ViewBag.TendenciaId"></select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label asp-for="ItemChamados" class="control-label">Clientes</label>
+            <select asp-for="ItemChamados" class="form-control" asp-items="ViewBag.ClienteId"></select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label asp-for="ItemChamados" class="control-label">Clientes</label>
+            <select asp-for="ItemChamados" class="form-control" asp-items="ViewBag.ClienteId"></select>
         </div>
     </div>
     <div class="row">
@@ -51,12 +63,12 @@
             <span asp-validation-for="Descricao" class="text-danger"></span>
         </div>
     </div>
-    <div class="form-group">
+@*     <div class="form-group">
         <label asp-for="Diagnostico" class="control-label"></label>
         <textarea asp-for="Diagnostico" class="form-control" rows="2"></textarea>
         <span asp-validation-for="Diagnostico" class="text-danger"></span>
-    </div>
-    <div class="form-group">
+    </div> *@
+@*     <div class="form-group">
         <label asp-for="Pendencia" class="control-label"></label>
         <textarea asp-for="Pendencia" class="form-control" rows="3"></textarea>
         <span asp-validation-for="Pendencia" class="text-danger"></span>
@@ -65,12 +77,12 @@
         <label asp-for="Conclusao" class="control-label"></label>
         <textarea asp-for="Conclusao" class="form-control" rows="2"></textarea>
         <span asp-validation-for="Conclusao" class="text-danger"></span>
-    </div>
+    </div> *@
 
     <div class="row mt-3">
         <div class="col">
             <a asp-action="Index" class="btn btn-danger mr-3">Cancelar</a>
-            <input type="submit" value="Create" class="btn btn-primary mx-3" />
+            <input type="submit" value="Criar" class="btn btn-primary mx-3" />
         </div>
     </div>
 </form>

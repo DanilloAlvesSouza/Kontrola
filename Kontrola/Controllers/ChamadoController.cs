@@ -72,6 +72,8 @@ namespace KontrolaPoc.Controllers
             ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "Descricao");
             ViewData["TendenciaId"] = new SelectList(_context.Tendencias, "TendenciaId", "Descricao");
             ViewData["UrgenciaId"] = new SelectList(_context.Urgencias, "UrgenciaId", "Descricao");
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Nome");
+
             return View();
         }
 

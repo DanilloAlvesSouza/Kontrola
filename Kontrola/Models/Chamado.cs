@@ -41,8 +41,5 @@ namespace KontrolaPoc.Models
         public virtual Tendencia Tendencia { get; set; }
 
 
-
-
-
     }
 }

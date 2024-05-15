@@ -41,8 +41,8 @@ namespace KontrolaPoc.Controllers
             return View(model);
         }
 
-            // GET: Chamado/Details/5
-            public async Task<IActionResult> Details(int? id)
+        // GET: Chamado/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Chamados == null)
             {
@@ -157,7 +157,47 @@ namespace KontrolaPoc.Controllers
             return View(chamado);
         }
 
-        // GET: Chamado/Delete/5
+        public async Task<IActionResult> Preenche(int id, [Bind("ChamadoId,DataInicio,DataFechamento,Descricao,Diagnostico,Pendencia,Conclusao,StatusId,ModalidadeId,GravidadeId,UrgenciaId,TendenciaId")] Chamado chamado)
+        {
+            if (id != chamado.ChamadoId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(chamado);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ChamadoExists(chamado.ChamadoId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["GravidadeId"] = new SelectList(_context.Gravidades, "GravidadeId", "GravidadeId", chamado.GravidadeId);
+            ViewData["ModalidadeId"] = new SelectList(_context.Modalidades, "ModalidadeId", "ModalidadeId", chamado.ModalidadeId);
+            ViewData["StatusId"] = new SelectList(_context.Status, "StatusId", "StatusId", chamado.StatusId);
+            ViewData["TendenciaId"] = new SelectList(_context.Tendencias, "TendenciaId", "TendenciaId", chamado.TendenciaId);
+            ViewData["UrgenciaId"] = new SelectList(_context.Urgencias, "UrgenciaId", "UrgenciaId", chamado.UrgenciaId);
+            return View(chamado);
+        }
+        //public IActionResult Preenche()
+        //{
+        //    return View();
+        //}
+
+
+       // GET: Chamado/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Chamados == null)
@@ -194,14 +234,14 @@ namespace KontrolaPoc.Controllers
             {
                 _context.Chamados.Remove(chamado);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ChamadoExists(int id)
         {
-          return _context.Chamados.Any(e => e.ChamadoId == id);
+            return _context.Chamados.Any(e => e.ChamadoId == id);
         }
     }
 }

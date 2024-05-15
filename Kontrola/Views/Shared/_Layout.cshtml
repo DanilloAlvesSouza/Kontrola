@@ -21,38 +21,41 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-white @(ViewBag.OpcaoMenu == 1 ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                                <a class="nav-link rounded text-white @(ViewBag.OpcaoMenu == 1 ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                             </li>
                             @if(User.IsInRole("Admin") || User.IsInRole("Member"))
                             {
-                                <li class="nav-item">
-                                    <a class="nav-link text-white @(ViewBag.OpcaoMenu == 2 ? "active" : "") " asp-area="" asp-controller="Chamado" asp-action="Index">Chamados</a>
+                                <li class="nav-item  ">
+                                    <a class="nav-link rounded  text-white @(ViewBag.OpcaoMenu == 2 ? "active" : "") " asp-area="" asp-controller="Chamado" asp-action="Index">Chamados</a>
                                 </li>
                             }
 
                             @if (User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-white @(ViewBag.OpcaoMenu == 3 ? "active" : "") " asp-area="" asp-controller="Equipamentos" asp-action="Index">Equipamentos</a>
+                                    <a class="nav-link rounded text-white @(ViewBag.OpcaoMenu == 3 ? "active" : "") " asp-area="" asp-controller="Equipamentos" asp-action="Index">Equipamentos</a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link text-white @(ViewBag.OpcaoMenu == 5 ? "active" : "")" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                                    <a class="nav-link rounded text-white @(ViewBag.OpcaoMenu == 4 ? "active" : "")" asp-area="" asp-controller="Clientes" asp-action="Index">Clientes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link rounded text-white @(ViewBag.OpcaoMenu == 5 ? "active" : "")" asp-area="" asp-controller="Clientes" asp-action="Index">Criar Usuario</a>
                                 </li>
                             }
                         </ul>
                         @await Html.PartialAsync("_LoginPartial")
                         @if (User.IsInRole("Admin"))
                         {
-                            <a class="nav-link text-light" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin</a>
+                            <a class="nav-link rounded text-light" id="Admin" asp-area="Admin" asp-controller="Admin" asp-action="Index">Admin</a>
                         }
                     </div>
                 </div>
             </nav>
         </header>
         <section class="Principal">
-            <div class="container">
-                <main role="main" class="pb-3">
+            <div class="container-fluid">
+                <main role="main" class="pb-3 w-100 p-3">
                     @RenderBody()
                 </main>
             </div>

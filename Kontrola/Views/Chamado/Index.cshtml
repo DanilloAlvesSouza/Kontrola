@@ -23,8 +23,8 @@ Total de chamados : @Model.TotalRecordCount
 <p>
     <a asp-action="Create" class="btn btn-success">Novo chamado</a>
 </p>
-<table class="table table-bordered">
-    <thead>
+<table class="table table-bordered " id="TabelasChamados">
+    <thead >
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.DataInicio)
@@ -84,10 +84,11 @@ Total de chamados : @Model.TotalRecordCount
                     @Html.DisplayFor(modelItem => item.Tendencia.Descricao)
                 </td>
                 <td>
-                    <div class="btn-group-sm" role="group" aria-label="Exemplo básico">
+                    <div class="btn-group-sm" id="BotaoAcoes" role="group" aria-label="Exemplo básico">
                         <a asp-action="Edit" class="btn btn-outline-info" asp-route-id="@item.ChamadoId">Editar</a>
                         <a asp-action="Details" class="btn btn-outline-info" asp-route-id="@item.ChamadoId">Detalhes</a>
                         <a asp-action="Delete" class="btn btn-outline-info" asp-route-id="@item.ChamadoId">Exluir</a>
+                        <a asp-action="Preenche" class="btn btn-outline-info" asp-route-id="@item.ChamadoId">Preencher</a>
                     </div>
                 </td>
             </tr>

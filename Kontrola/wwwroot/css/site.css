@@ -38,10 +38,11 @@ body{
 
 
 
-.nav-link:hover, .nav-link:focus{
-    color: white;
+.nav-link:hover {
+    color: gray;
     font-weight: 700;
     background-color: #a5a2a2;
+   
 }
 
 .active {
@@ -54,3 +55,4 @@ body{
     display: inline;
     font-weight: 800;
 }
+
